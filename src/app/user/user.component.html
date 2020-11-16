@@ -1,0 +1,82 @@
+
+<div class="container">
+    <h4 class="text-success" *ngIf="display">Add Employee</h4>
+    <h4 class="text-success" *ngIf="!display">Update Employee</h4>
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            placeholder="Enter name....."
+            [(ngModel)]="employeeObje['name']"
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+          />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>City:</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="city"
+            placeholder="Enter city....."
+            [(ngModel)]="employeeObje['city']"
+            [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
+          />
+          <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+            <div *ngIf="f.city.errors.required">city is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Salary:</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="salary"
+            placeholder="Enter salary....."
+            [(ngModel)]="employeeObje['salary']"
+            [ngClass]="{ 'is-invalid': submitted && f.salary.errors }"
+          />
+          <div *ngIf="submitted && f.salary.errors" class="invalid-feedback">
+            <div *ngIf="f.salary.errors.required">Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Mobile:</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="phone"
+            placeholder="Enter Mobile....."
+            [(ngModel)]="employeeObje['phone']"
+            [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"
+          />
+          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+            <div *ngIf="f.phone.errors.required">Mobile is required</div>
+          </div>
+        </div>
+        <div *ngIf="display">
+          <input type="submit" class="btn btn-primary" value="CreateUser" />
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg-4" *ngIf="!display">
+      <button class="btn btn-success" (click)="UpdateEmployee()">
+        UpdateEmployee
+      </button>
+    </div>
+    <div class="col-lg-8">
+      <button class="btn btn-success" (click)="BacktoAll()">
+        BackEmployeeList
+      </button>
+    </div>
+  </div>
+</div>
+

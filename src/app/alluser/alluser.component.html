@@ -1,0 +1,60 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-bordered">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Salary</th>
+            <th>Mobile</th>
+            <th>Action</th>
+          </tr>
+          <tr
+            *ngFor="
+              let data of resultData
+                | paginate
+                  : {
+                      itemsPerPage: itemsPerPage,
+                      currentPage: currentPage
+                    }
+            "
+          >
+            <td>{{ data.id }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.city }}</td>
+            <td>{{ data.salary }}</td>
+            <td>{{ data.phone }}</td>
+            <td>
+              <span
+                ><a [routerLink]="['']"
+                  ><i
+                    class="fa fa-edit"
+                    style="color: rgb(20, 172, 88)"
+                    (click)="editById(data.id)"
+                  ></i></a
+              ></span>
+              <i
+                class="fa fa-trash"
+                aria-hidden="true"
+                (click)="deleteData(data.id)"
+                style="color: red"
+              ></i>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <pagination-controls
+          (pageChange)="pageChange((currentPage = $event))"
+          class="float-right"
+        ></pagination-controls>
+      </div>
+      <div>
+        <button class="btn btn-success" (click)="BacktoForm()">
+          BackEmployee
+        </button>
+      </div>
+    </div>
+  </div>
